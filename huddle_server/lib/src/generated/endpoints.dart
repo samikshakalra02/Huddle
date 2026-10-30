@@ -10,6 +10,7 @@
 // ignore_for_file: invalid_use_of_internal_member
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'package:huddle_server/src/generated/reel.dart' as _iatfyt6a;
 import 'package:serverpod/serverpod.dart' as _is;
 import 'package:serverpod_auth_core_server/serverpod_auth_core_server.dart'
     as _iacs;
@@ -416,6 +417,62 @@ class Endpoints extends _is.EndpointDispatch {
                     session,
                     reelId: params['reelId'],
                     selectedAnswers: params['selectedAnswers'],
+                  ),
+        ),
+        'validateReel': _is.MethodConnector(
+          name: 'validateReel',
+          params: {
+            'title': _is.ParameterDescription(
+              name: 'title',
+              type: _is.getType<String>(),
+              nullable: false,
+            ),
+            'subject': _is.ParameterDescription(
+              name: 'subject',
+              type: _is.getType<String>(),
+              nullable: false,
+            ),
+            'content': _is.ParameterDescription(
+              name: 'content',
+              type: _is.getType<String>(),
+              nullable: false,
+            ),
+          },
+          call:
+              (
+                _is.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['reel'] as _i16s5vx1.ReelEndpoint).validateReel(
+                    session,
+                    title: params['title'],
+                    subject: params['subject'],
+                    content: params['content'],
+                  ),
+        ),
+        'uploadReel': _is.MethodConnector(
+          name: 'uploadReel',
+          params: {
+            'reel': _is.ParameterDescription(
+              name: 'reel',
+              type: _is.getType<_iatfyt6a.Reel>(),
+              nullable: false,
+            ),
+            'content': _is.ParameterDescription(
+              name: 'content',
+              type: _is.getType<String>(),
+              nullable: false,
+            ),
+          },
+          call:
+              (
+                _is.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['reel'] as _i16s5vx1.ReelEndpoint).uploadReel(
+                    session,
+                    reel: params['reel'],
+                    content: params['content'],
                   ),
         ),
       },

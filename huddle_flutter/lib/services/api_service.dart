@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:huddle_client/huddle_client.dart';
 import '../client.dart';
 import '../data/fake_data.dart';
+import 'tech_domain_validator.dart';
 
 /// Centralized API service for Huddle that safely manages server connectivity,
 /// seamless offline demo fallbacks, and live Serverpod RPC communication.
@@ -161,6 +162,100 @@ class ApiService {
       suggestedSquadTopic: reel.suggestedSquadTopic,
       feedback: feedback,
     );
+  }
+
+  /// Evaluates reel content with ML classifier before uploading.
+  Future<ReelValidationResult> validateReel({
+    required String title,
+    required String subject,
+    required String content,
+  }) async {
+    if (!isServerAvailable.value) {
+      return TechDomainValidator.validateContent(
+        title: title,
+        subject: subject,
+        content: content,
+      );
+    }
+
+    try {
+      return await client.reel.validateReel(
+        title: title,
+        subject: subject,
+        content: content,
+      );
+    } catch (_) {
+      return TechDomainValidator.validateContent(
+        title: title,
+        subject: subject,
+        content: content,
+      );
+    }
+  }
+
+  /// Uploads a new peer reel after server ML validation.
+  Future<ReelValidationResult> uploadReel({
+    required Reel reel,
+    required String content,
+  }) async {
+    if (!isServerAvailable.value) {
+      final res = TechDomainValidator.validateContent(
+        title: reel.title,
+        subject: reel.subject,
+        content: content,
+        reel: reel,
+      );
+      if (res.isValid) {
+        final assignedReel = reel.copyWith(
+          id: FakeData.reels.length + 100,
+        );
+        FakeData.reels.insert(0, assignedReel);
+        return ReelValidationResult(
+          isValid: true,
+          isTechDomain: true,
+          confidenceScore: res.confidenceScore,
+          detectedDomain: res.detectedDomain,
+          technicalKeywords: res.technicalKeywords,
+          reason: res.reason,
+          validatedReel: assignedReel,
+        );
+      }
+      return res;
+    }
+
+    try {
+      final res = await client.reel.uploadReel(
+        reel: reel,
+        content: content,
+      );
+      if (res.isValid && res.validatedReel != null) {
+        FakeData.reels.insert(0, res.validatedReel!);
+      }
+      return res;
+    } catch (_) {
+      final res = TechDomainValidator.validateContent(
+        title: reel.title,
+        subject: reel.subject,
+        content: content,
+        reel: reel,
+      );
+      if (res.isValid) {
+        final assignedReel = reel.copyWith(
+          id: FakeData.reels.length + 100,
+        );
+        FakeData.reels.insert(0, assignedReel);
+        return ReelValidationResult(
+          isValid: true,
+          isTechDomain: true,
+          confidenceScore: res.confidenceScore,
+          detectedDomain: res.detectedDomain,
+          technicalKeywords: res.technicalKeywords,
+          reason: res.reason,
+          validatedReel: assignedReel,
+        );
+      }
+      return res;
+    }
   }
 
   /// Joins a squad.

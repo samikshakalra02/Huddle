@@ -9,6 +9,7 @@ import '../widgets/huddle_button.dart';
 import '../widgets/huddle_card.dart';
 import '../widgets/huddle_chip.dart';
 import '../widgets/reel_card.dart';
+import '../widgets/reel_upload_modal.dart';
 import 'try_it_sheet.dart';
 
 class ReelScreen extends StatefulWidget {
@@ -99,6 +100,26 @@ class _ReelScreenState extends State<ReelScreen> {
           'REEL VIEWER',
           style: HuddleTheme.monoLabel(color: Colors.white),
         ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 16),
+            child: HuddleButton(
+              text: 'Upload Tech Reel',
+              icon: Icons.add_circle_outline_rounded,
+              variant: HuddleButtonVariant.neon,
+              onPressed: () => ReelUploadModal.show(
+                context,
+                onReelCreated: (newReel) {
+                  setState(() {
+                    _reels.insert(0, newReel);
+                    _currentIndex = 0;
+                  });
+                  _jumpToInitial();
+                },
+              ),
+            ),
+          ),
+        ],
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_outlined, color: Colors.white),
           onPressed: () =>
@@ -365,6 +386,56 @@ class _ReelScreenState extends State<ReelScreen> {
                                   variant: HuddleButtonVariant.neonSubtle,
                                   onPressed: () => _onStudyTogether(
                                     activeReel.suggestedSquadTopic,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(height: 16),
+                          HuddleCard(
+                            color: HuddleTheme.neonCardAlt,
+                            border: Border.all(color: const Color(0x3300F0FF)),
+                            padding: const EdgeInsets.all(18),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    const Icon(
+                                      Icons.smart_toy_rounded,
+                                      color: HuddleTheme.neonCyan,
+                                      size: 18,
+                                    ),
+                                    const SizedBox(width: 8),
+                                    Text(
+                                      'ML DOMAIN GUARDIAN',
+                                      style: HuddleTheme.monoLabel(
+                                        color: HuddleTheme.neonCyan,
+                                      ).copyWith(fontSize: 11),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 8),
+                                Text(
+                                  'Only Computer Science & Engineering reels are accepted. Test the ML classifier or upload your own.',
+                                  style: HuddleTheme.body14(
+                                    color: HuddleTheme.neonTextMuted,
+                                  ).copyWith(fontSize: 12),
+                                ),
+                                const SizedBox(height: 14),
+                                HuddleButton(
+                                  text: 'Upload & Validate Reel',
+                                  icon: Icons.upload_file_rounded,
+                                  variant: HuddleButtonVariant.neon,
+                                  onPressed: () => ReelUploadModal.show(
+                                    context,
+                                    onReelCreated: (newReel) {
+                                      setState(() {
+                                        _reels.insert(0, newReel);
+                                        _currentIndex = 0;
+                                      });
+                                      _jumpToInitial();
+                                    },
                                   ),
                                 ),
                               ],

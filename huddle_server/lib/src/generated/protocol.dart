@@ -28,6 +28,7 @@ import 'peer_endorsement.dart' as _i9iommci;
 import 'quiz_question.dart' as _i6b38qpb;
 import 'quiz_result.dart' as _isjq8qs8;
 import 'reel.dart' as _i3xjypah;
+import 'reel_validation_result.dart' as _i3l924vf;
 import 'squad.dart' as _i1svoism;
 import 'squad_chat_message.dart' as _ijharqf9;
 import 'squad_details.dart' as _i29qtu7j;
@@ -44,6 +45,7 @@ export 'peer_endorsement.dart';
 export 'quiz_question.dart';
 export 'quiz_result.dart';
 export 'reel.dart';
+export 'reel_validation_result.dart';
 export 'squad.dart';
 export 'squad_chat_message.dart';
 export 'squad_details.dart';
@@ -422,6 +424,9 @@ class Protocol extends _is.DatabaseSerializationManager {
     if (t == _i3xjypah.Reel) {
       return _i3xjypah.Reel.fromJson(data) as T;
     }
+    if (t == _i3l924vf.ReelValidationResult) {
+      return _i3l924vf.ReelValidationResult.fromJson(data) as T;
+    }
     if (t == _i1svoism.Squad) {
       return _i1svoism.Squad.fromJson(data) as T;
     }
@@ -471,6 +476,12 @@ class Protocol extends _is.DatabaseSerializationManager {
     }
     if (t == _is.getType<_i3xjypah.Reel?>()) {
       return (data != null ? _i3xjypah.Reel.fromJson(data) : null) as T;
+    }
+    if (t == _is.getType<_i3l924vf.ReelValidationResult?>()) {
+      return (data != null
+              ? _i3l924vf.ReelValidationResult.fromJson(data)
+              : null)
+          as T;
     }
     if (t == _is.getType<_i1svoism.Squad?>()) {
       return (data != null ? _i1svoism.Squad.fromJson(data) : null) as T;
@@ -606,6 +617,7 @@ class Protocol extends _is.DatabaseSerializationManager {
       _i6b38qpb.QuizQuestion => 'QuizQuestion',
       _isjq8qs8.QuizResult => 'QuizResult',
       _i3xjypah.Reel => 'Reel',
+      _i3l924vf.ReelValidationResult => 'ReelValidationResult',
       _i1svoism.Squad => 'Squad',
       _ijharqf9.SquadChatMessage => 'SquadChatMessage',
       _i29qtu7j.SquadDetails => 'SquadDetails',
@@ -644,6 +656,8 @@ class Protocol extends _is.DatabaseSerializationManager {
         return 'QuizResult';
       case _i3xjypah.Reel():
         return 'Reel';
+      case _i3l924vf.ReelValidationResult():
+        return 'ReelValidationResult';
       case _i1svoism.Squad():
         return 'Squad';
       case _ijharqf9.SquadChatMessage():
@@ -709,6 +723,9 @@ class Protocol extends _is.DatabaseSerializationManager {
     }
     if (dataClassName == 'Reel') {
       return deserialize<_i3xjypah.Reel>(data['data']);
+    }
+    if (dataClassName == 'ReelValidationResult') {
+      return deserialize<_i3l924vf.ReelValidationResult>(data['data']);
     }
     if (dataClassName == 'Squad') {
       return deserialize<_i1svoism.Squad>(data['data']);

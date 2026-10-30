@@ -16,6 +16,9 @@ import 'package:huddle_client/src/protocol/feed_response.dart' as _iwytu3ze;
 import 'package:huddle_client/src/protocol/greetings/greeting.dart'
     as _ii60tda0;
 import 'package:huddle_client/src/protocol/quiz_result.dart' as _irvwqrsp;
+import 'package:huddle_client/src/protocol/reel.dart' as _iotke41f;
+import 'package:huddle_client/src/protocol/reel_validation_result.dart'
+    as _i9h0k2ux;
 import 'package:huddle_client/src/protocol/squad.dart' as _i1r9in2t;
 import 'package:huddle_client/src/protocol/squad_chat_message.dart'
     as _ifnfqe9v;
@@ -343,6 +346,38 @@ class EndpointReel extends _isc.EndpointRef {
     {
       'reelId': reelId,
       'selectedAnswers': selectedAnswers,
+    },
+  );
+
+  /// ML-Powered Tech Domain Pre-Validation
+  /// Analyzes the reel title, subject, and transcript/content summary before upload.
+  /// Rejects non-tech domains (lifestyle, dance, gaming streams, gossip) and approves
+  /// verified engineering/CS topics with confidence scores.
+  _ida.Future<_i9h0k2ux.ReelValidationResult> validateReel({
+    required String title,
+    required String subject,
+    required String content,
+  }) => caller.callServerEndpoint<_i9h0k2ux.ReelValidationResult>(
+    'reel',
+    'validateReel',
+    {
+      'title': title,
+      'subject': subject,
+      'content': content,
+    },
+  );
+
+  /// Validates and securely uploads a new micro-lesson Reel.
+  /// Enforces that only verified tech-domain reels pass the ML gatekeeper.
+  _ida.Future<_i9h0k2ux.ReelValidationResult> uploadReel({
+    required _iotke41f.Reel reel,
+    required String content,
+  }) => caller.callServerEndpoint<_i9h0k2ux.ReelValidationResult>(
+    'reel',
+    'uploadReel',
+    {
+      'reel': reel,
+      'content': content,
     },
   );
 }

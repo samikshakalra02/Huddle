@@ -17,6 +17,9 @@ import 'package:huddle_server/src/generated/feed_response.dart' as _iajb3a6h;
 import 'package:huddle_server/src/generated/greetings/greeting.dart'
     as _i97arc98;
 import 'package:huddle_server/src/generated/quiz_result.dart' as _iih4jvpw;
+import 'package:huddle_server/src/generated/reel.dart' as _iatfyt6a;
+import 'package:huddle_server/src/generated/reel_validation_result.dart'
+    as _i3l7eoda;
 import 'package:huddle_server/src/generated/squad.dart' as _ioqogg9q;
 import 'package:huddle_server/src/generated/squad_chat_message.dart'
     as _ity2bxpv;
@@ -758,6 +761,78 @@ class _ReelEndpoint {
                   _localCallContext.arguments,
                 )
                 as _ida.Future<_iih4jvpw.QuizResult>);
+        return _localReturnValue;
+      } finally {
+        await _localUniqueSession.close();
+      }
+    });
+  }
+
+  _ida.Future<_i3l7eoda.ReelValidationResult> validateReel(
+    _ist.TestSessionBuilder sessionBuilder, {
+    required String title,
+    required String subject,
+    required String content,
+  }) async {
+    return _ist.callAwaitableFunctionAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _ist.InternalTestSessionBuilder).internalBuild(
+            endpoint: 'reel',
+            method: 'validateReel',
+          );
+      try {
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'reel',
+          methodName: 'validateReel',
+          parameters: _ist.testObjectToJson({
+            'title': title,
+            'subject': subject,
+            'content': content,
+          }),
+          serializationManager: _serializationManager,
+        );
+        var _localReturnValue =
+            await (_localCallContext.method.call(
+                  _localUniqueSession,
+                  _localCallContext.arguments,
+                )
+                as _ida.Future<_i3l7eoda.ReelValidationResult>);
+        return _localReturnValue;
+      } finally {
+        await _localUniqueSession.close();
+      }
+    });
+  }
+
+  _ida.Future<_i3l7eoda.ReelValidationResult> uploadReel(
+    _ist.TestSessionBuilder sessionBuilder, {
+    required _iatfyt6a.Reel reel,
+    required String content,
+  }) async {
+    return _ist.callAwaitableFunctionAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _ist.InternalTestSessionBuilder).internalBuild(
+            endpoint: 'reel',
+            method: 'uploadReel',
+          );
+      try {
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'reel',
+          methodName: 'uploadReel',
+          parameters: _ist.testObjectToJson({
+            'reel': reel,
+            'content': content,
+          }),
+          serializationManager: _serializationManager,
+        );
+        var _localReturnValue =
+            await (_localCallContext.method.call(
+                  _localUniqueSession,
+                  _localCallContext.arguments,
+                )
+                as _ida.Future<_i3l7eoda.ReelValidationResult>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();

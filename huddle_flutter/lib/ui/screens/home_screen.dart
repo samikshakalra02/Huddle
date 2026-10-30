@@ -11,6 +11,7 @@ import '../widgets/huddle_avatar.dart';
 import '../widgets/huddle_button.dart';
 import '../widgets/huddle_chip.dart';
 import '../widgets/reel_card.dart';
+import '../widgets/reel_upload_modal.dart';
 import '../widgets/section_label.dart';
 import '../widgets/serverpod_badge.dart';
 import '../widgets/ticker.dart';
@@ -831,26 +832,39 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildQuickCtaBar() {
     return LayoutBuilder(
       builder: (context, constraints) {
-        final isNarrow = constraints.maxWidth < 420;
+        final w = constraints.maxWidth;
+        final itemWidth = w >= 700
+            ? (w - 24) / 3
+            : (w >= 440 ? (w - 12) / 2 : double.infinity);
         return Wrap(
           spacing: 12,
           runSpacing: 10,
           children: [
             SizedBox(
-              width: isNarrow
-                  ? double.infinity
-                  : (constraints.maxWidth - 12) / 2,
+              width: itemWidth,
+              child: HuddleButton(
+                text: 'Upload Tech Reel',
+                icon: Icons.smart_toy_outlined,
+                variant: HuddleButtonVariant.neon,
+                onPressed: () => ReelUploadModal.show(
+                  context,
+                  onReelCreated: (newReel) {
+                    setState(() => _reels.insert(0, newReel));
+                  },
+                ),
+              ),
+            ),
+            SizedBox(
+              width: itemWidth,
               child: HuddleButton(
                 text: 'Join Squad Room',
                 icon: Icons.timer_outlined,
-                variant: HuddleButtonVariant.neon,
+                variant: HuddleButtonVariant.neonSubtle,
                 onPressed: () => context.go('/room/1'),
               ),
             ),
             SizedBox(
-              width: isNarrow
-                  ? double.infinity
-                  : (constraints.maxWidth - 12) / 2,
+              width: itemWidth,
               child: HuddleButton(
                 text: 'Browse Match Deck',
                 icon: Icons.view_carousel_outlined,

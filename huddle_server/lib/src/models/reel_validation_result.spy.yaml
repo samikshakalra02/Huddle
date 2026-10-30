@@ -1,0 +1,11 @@
+class: ReelValidationResult
+fields:
+  isValid: bool
+  isTechDomain: bool
+  confidenceScore: double
+  detectedDomain: String
+  technicalKeywords: List<String>
+  reason: String
+  suggestion: String?
+  validatedReel: Reel?
+

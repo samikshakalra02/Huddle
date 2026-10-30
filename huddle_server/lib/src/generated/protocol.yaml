@@ -18,6 +18,8 @@ profile:
   - updateGoal:
 reel:
   - submitQuiz:
+  - validateReel:
+  - uploadReel:
 squad:
   - room:
   - sendChat:
