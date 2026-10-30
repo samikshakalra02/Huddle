@@ -1,0 +1,10 @@
+class: SquadMember
+table: squad_member
+fields:
+  squadId: int
+  userName: String
+  avatarUrl: String?
+  isFocusing: bool, default=true
+  karma: double, default=4.8
+  joinedAt: DateTime, default=now
+

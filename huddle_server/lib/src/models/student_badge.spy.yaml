@@ -1,0 +1,9 @@
+class: StudentBadge
+fields:
+  title: String
+  description: String
+  category: String
+  isVolt: bool
+  isUnlocked: bool
+  unlockedDate: String?
+

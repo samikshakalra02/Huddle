@@ -1,0 +1,7 @@
+class: SquadSuggestion
+fields:
+  squad: Squad
+  matchScore: int
+  matchReason: String
+  memberCount: int
+

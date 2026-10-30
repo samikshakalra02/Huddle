@@ -1,0 +1,5 @@
+class: SquadDetails
+fields:
+  squad: Squad
+  members: List<SquadMember>
+  recentMessages: List<SquadChatMessage>?

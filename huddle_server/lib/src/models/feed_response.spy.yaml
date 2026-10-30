@@ -1,0 +1,5 @@
+class: FeedResponse
+fields:
+  reels: List<Reel>
+  events: List<CampusEvent>
+

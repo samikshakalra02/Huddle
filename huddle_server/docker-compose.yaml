@@ -1,0 +1,30 @@
+services:
+  # Development services
+  postgres:
+    image: ghcr.io/serverpod/postgres:16
+    ports:
+      - "8090:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: huddle
+      POSTGRES_PASSWORD: "KETnwoMVRT1B11gWPrin3XbnaoglE6YA"
+    volumes:
+      - huddle_data:/var/lib/postgresql/data
+
+
+  # Test services
+  postgres_test:
+    image: ghcr.io/serverpod/postgres:16
+    ports:
+      - "9090:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: huddle_test
+      POSTGRES_PASSWORD: "pZNS3PqwtbNEMd-LQjQLpJj7ltZT83-m"
+    volumes:
+      - huddle_test_data:/var/lib/postgresql/data
+
+
+volumes:
+  huddle_data:
+  huddle_test_data:

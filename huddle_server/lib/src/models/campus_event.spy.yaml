@@ -1,0 +1,10 @@
+class: CampusEvent
+table: campus_event
+fields:
+  title: String
+  organizer: String
+  venue: String
+  eventTime: DateTime
+  description: String
+  tag: String
+

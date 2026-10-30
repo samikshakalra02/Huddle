@@ -1,0 +1,9 @@
+class: SquadRoomEvent
+fields:
+  squadId: int?
+  type: String
+  userName: String?
+  message: String?
+  squad: Squad?
+  members: List<SquadMember>?
+  timestamp: DateTime

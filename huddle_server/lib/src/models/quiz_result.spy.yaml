@@ -1,0 +1,8 @@
+class: QuizResult
+fields:
+  score: int
+  totalQuestions: int
+  passed: bool
+  suggestedSquadTopic: String
+  feedback: String
+

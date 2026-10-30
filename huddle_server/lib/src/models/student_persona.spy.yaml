@@ -1,0 +1,22 @@
+class: StudentPersona
+fields:
+  name: String
+  handle: String
+  major: String
+  year: String
+  campus: String
+  bio: String
+  studyVibe: String
+  currentGoal: String
+  karmaScore: double
+  karmaRank: String
+  streakDays: int
+  focusHours: double
+  quizzesAced: int
+  squadsJoined: int
+  peerEndorsementsCount: int
+  activeSquadName: String
+  badges: List<StudentBadge>
+  recentActivity: List<KarmaActivity>
+  endorsements: List<PeerEndorsement>
+

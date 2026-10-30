@@ -1,0 +1,8 @@
+class: SquadChatMessage
+table: squad_chat_message
+fields:
+  squadId: int
+  userName: String
+  message: String
+  sentAt: DateTime, default=now
+

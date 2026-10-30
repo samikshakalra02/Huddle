@@ -1,0 +1,8 @@
+class: PeerEndorsement
+fields:
+  authorName: String
+  authorMajor: String
+  tag: String
+  quote: String
+  timeAgo: String
+

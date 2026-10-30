@@ -1,0 +1,15 @@
+class: Squad
+table: squad
+fields:
+  name: String
+  topic: String
+  targetExam: String
+  timeSlot: String
+  streak: int, default=1
+  goal: String, default='40 problems'
+  currentGoalCount: int, default=28
+  maxMembers: int, default=6
+  timerStartedAt: DateTime?
+  timerDurationSeconds: int, default=1500
+  isFocusing: bool, default=false
+

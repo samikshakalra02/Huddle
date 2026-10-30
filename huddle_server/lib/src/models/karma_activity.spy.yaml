@@ -1,0 +1,8 @@
+class: KarmaActivity
+fields:
+  title: String
+  detail: String
+  karmaDelta: double
+  timeAgo: String
+  iconName: String
+

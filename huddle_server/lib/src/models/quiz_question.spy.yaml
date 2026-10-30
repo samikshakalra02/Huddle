@@ -1,0 +1,7 @@
+class: QuizQuestion
+fields:
+  question: String
+  options: List<String>
+  correctOptionIndex: int
+  explanation: String?
+

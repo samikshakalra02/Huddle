@@ -1,0 +1,11 @@
+class: Reel
+table: reel
+fields:
+  title: String
+  creatorName: String
+  subject: String
+  videoUrl: String
+  durationSeconds: int, default=45
+  suggestedSquadTopic: String
+  quizQuestions: List<QuizQuestion>
+

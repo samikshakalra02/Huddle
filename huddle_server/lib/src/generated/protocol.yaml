@@ -1,0 +1,31 @@
+emailIdp:
+  - login:
+  - startRegistration:
+  - verifyRegistrationCode:
+  - finishRegistration:
+  - startPasswordReset:
+  - verifyPasswordResetCode:
+  - finishPasswordReset:
+  - hasAccount:
+jwtRefresh:
+  - refreshAccessToken:
+feed:
+  - get:
+profile:
+  - getPersonas:
+  - getPersonaByName:
+  - endorsePersona:
+  - updateGoal:
+reel:
+  - submitQuiz:
+squad:
+  - room:
+  - sendChat:
+  - updatePresence:
+  - suggest:
+  - join:
+  - startTimer:
+  - getSquad:
+  - list:
+greeting:
+  - hello:
